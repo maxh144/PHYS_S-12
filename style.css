@@ -1,13 +1,71 @@
 body {
-    font: 20px Montserrat, sans-serif;
-    line-height: 1.8;
-    color: black;
+    font: 20px Raleway, sans-serif;
+    line-height: 2;
+    color: #D8DBE2;
+    font-weight: 500;
+    background-color: #1B1B1E;
   }
 
 p {font-size: 16px;}
-.margin {margin-bottom: 15px;}
+
+a:link{
+  color: #D8DBE2;
+}
+a:visited{
+  color: #D8DBE2;
+}
+
+a.logo:hover{
+  text-decoration: none;
+}
+
+.margin {margin-bottom: 10px;}
+
+.thumb{
+  margin-bottom: 15px;
+}
+
+.flex{
+  display: flex;
+  flex-direction: row;
+  border: 0px;
+}
+
+
+.element{
+  padding: 10px;
+  margin-top: 3px;
+}
 
 .container-fluid {
   padding: 30px;
   padding-bottom: 70px;
+}
+
+.navbar{
+  background-color: #373F51;
+  padding: 0px;
+  margin-bottom: 0px;
+}
+
+
+
+.top-row{
+
+  margin-top: 10px;
+
+}
+
+.nav{
+
+  margin-right: 30px;
+  text-align: center;
+
+}
+
+.img-responsive{
+
+  border: 10px solid #58A4B0;
+  border-radius: 4px;
+
 }
