@@ -75,8 +75,8 @@ a.logo:hover{
 
 .desc{
 
-  font-size: 30px;
-  line-height: 100px;
+  font-size: 1.5rem;
+  line-height: 2.5rem;
   margin: 40px;
   text-align: justify;
   text-justify:  inter-word;
@@ -98,6 +98,6 @@ a.logo:hover{
 
 .idea-head{
 
-    font-size: 40px;
+    font-size: 2.25rem;
 
 }
