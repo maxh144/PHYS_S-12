@@ -19,6 +19,14 @@ a.logo:hover{
   text-decoration: none;
 }
 
+a.link:link{
+  color: #58A4B0;
+}
+a.link:visited{
+  color: #58A4B0;
+}
+
+
 .margin {margin-bottom: 10px;}
 
 .thumb{
@@ -73,13 +81,13 @@ a.logo:hover{
 
 }
 
+
 .desc{
 
   font-size: 1.5rem;
   line-height: 2.5rem;
   margin: 40px;
-  text-align: justify;
-  text-justify:  inter-word;
+  text-indent: 2rem;
 
 }
 
@@ -100,6 +108,24 @@ a.logo:hover{
 
     font-size: 2.25rem;
 
+}
+
+.center{
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.subhead{
+
+  font-size: 2.25rem;
+  margin: 100px 0px 75px 150px;
+
+}
+
+.caption{
+  text-align: center;
+  font-size: 1.25rem;
 }
 
 .abt-img{
