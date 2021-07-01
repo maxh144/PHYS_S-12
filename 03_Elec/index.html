@@ -45,16 +45,20 @@
   </div>
 
 
-  <h4 class = "subhead" style = "margin-bottom: 25px;"> Simple Resistor Circuit Calculations</h4>
+  
 
   <div class = "row">
 
     <div class=col-sm-7>
-      <p class = "desc"> I applied my new theoretical knowledge into calculating the voltage, current, and resistance across all resistors of a simple circuit. I chose 5v as the input voltage and resistors that were all powers of 10 to make the calculations easier. This was mostly just applying the formulas I had just derived: first, calculating the resistance for paralell resistors, then finding the current running through the entire circuit, then calulating voltage across series resistors, and finally applying Ohm's law to find the current. To test this, I hooked the circuit up to my power supply and measured the voltage and resistance across each resistor with my multimeter. Once this worked, I attached the circuit to my Arduino and read the voltage using the A0 pin. To avoid burning out the 3.3v logic of the Metro, I relied on the fact that the 5v used in my original calculations was only ever used as a scaling factor, meaning I could just multiply the 0-3.3v range to get 0-5v and obtain readings accurate to a 5v circuit.</p>
+
+      <h4 class = "subhead" style = "margin-bottom: 25px;"> Simple Resistor Circuit Calculations</h4>
+
+      <p class = "desc"> I applied my new theoretical knowledge into calculating the voltage, current, and resistance across all resistors of a simple circuit before measuring the circuit. I chose 5v as the input voltage and resistors that were all powers of 10 to make the calculations easier. This was mostly just applying the formulas I had just derived: first, calculating the resistance for paralell resistors, then finding the current running through the entire circuit, then calulating voltage across series resistors, and finally applying Ohm's law to find the current. To test this, I hooked the circuit up to my power supply and measured the voltage and resistance across each resistor with my multimeter. I was suprised to see that I had gotten the same results as my theoretical calculations. Once this worked, I attached the circuit to my Arduino and read the voltage using the A0 pin. To avoid burning out the 3.3v logic of the Metro, I relied on the fact that the 5v used in my original calculations was only ever used as a scaling factor, meaning I could just multiply the 0-3.3v range to get 0-5v and obtain readings accurate to a 5v circuit.</p>
     </div>
     <div class=col-sm-5>
       <img src="./resistDraw.jpg" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="Schematic">
       <img src="./resist.jpg" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="The actual circuit">
+       <img src="./SIM.PNG" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="The actual circuit">
     </div>
   </div>
 
@@ -77,7 +81,7 @@
 
   <h4 class= "subhead" style="text-align: center; margin: 100px 0px 25px 0px;">Metro Troubleshooting</h4>
 
-  <p class = "desc" style = "text-indent: 0rem;"> I often had trouble uploading code to the Metro, as the Arduino IDE would just say uploading and never finish. To fix this, I double-tapped the reset button and checked the port that the Metro was in, as it usually changed. More tips can be found <a href="https://learn.adafruit.com/adafruit-metro-m0-express-designed-for-circuitpython/metro-m0-help" class = "link">here </a> </p>
+  <p class = "desc" style = "text-indent: 0rem;"> I often had trouble uploading code to the Metro, as the Arduino IDE would just say uploading and never finish. To fix this, I double-tapped the reset button and checked the port that the Metro was in, as it usually changed. Reinstalling the SAMD boards in the board maganger also helped. More tips can be found <a href="https://learn.adafruit.com/adafruit-metro-m0-express-designed-for-circuitpython/metro-m0-help" class = "link">here </a> </p>
 
 
 </div>
