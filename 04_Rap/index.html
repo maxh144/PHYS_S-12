@@ -28,7 +28,7 @@
 
   <div class = "row">
       <div class="col-sm-6">
-        <p class = "desc"> I started by wiring up a simple circuit to see how a motor could be driven with a transistor. I was also curious to obsereve the actual effect of a flyback diode, so I replaced the traditional diode used with a LED. Then, I tested the motor at different speeds using the <code>analogWrite()</code> function. I observed that the lower the speed of the motor, the brighter the LED was. I assume that this was because the motor was turning off and on more often, allowing the moter to coast more, generating higher transient voltage.</p>
+        <p class = "desc"> I started by wiring up a simple circuit to see how a motor could be driven with a transistor. I was also curious to obsereve the actual effect of a flyback diode, so I replaced the traditional diode used with a LED. Then, I tested the motor at different speeds using the <code>analogWrite()</code> function. I observed that the lower the speed of the motor, the brighter the LED was. I assume that this was because the motor was turning off and on more often, allowing the moter to coast more, generating higher transient voltage. I measured the voltage across the 10M Ohm resistor on the signal line when it is not changing (Different than shown in picture), 0.7mv. By applying Ohm's Law, we can conclude that the current required to open the MOSFET is 0.7 x 10<sup>-9</sup> A.</p>
       </div>
       <div class=col-sm-6>
         <img src="./MOSFET.jpg" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="MOSFET Circuit">
