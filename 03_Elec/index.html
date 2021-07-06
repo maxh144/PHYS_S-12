@@ -36,7 +36,7 @@
   <div class = "row">
 
     <div class=col-sm-7>
-      <p class = "desc"> Then, I dived into I-V curves. A simple I-V curve is simiple enough to understand, with a input voltage and a resultant current flowing through a device, but load lines make the situation more complicated. For me, this confusion mostly stemmed form how the voltage on the X-axis is just the voltage of the diode (V<sub>D</sub>)while the current on the Y-axis is for the entire circuit. The curved line represents the current that will flow through the diode based on the voltage drop across it, a property of the diode itself. The line represents the current that will flow through the circuit based on the voltage drop across the diode, as whatever voltage doesn't drop across the diode must drop across the resistor, and the current across the resistor can be calculated by Ohm's Law. Since the current in a series circuit is constant, the intersection of the graphs, or the Q-Point, is were both the circuit and diode's requirements meet, which means it is where the circuit will operate. I found <a href="https://www.youtube.com/watch?v=TaTGnbxIMdY" class = "link"> this video </a> helpful.</p>
+      <p class = "desc"> Then, I dived into I-V curves. A simple I-V curve is simiple enough to understand, with a input voltage and a resultant current flowing through a device, but load lines make the situation more complicated. For me, this confusion mostly stemmed form how the voltage on the X-axis is just the voltage of the diode (V<sub>D</sub>) while the current on the Y-axis is for the entire circuit. The curved line represents the current that will flow through the diode based on the voltage drop across it, a property of the diode itself. The line represents the current that will flow through the circuit based on the voltage drop across the diode, as whatever voltage doesn't drop across the diode must drop across the resistor, and the current across the resistor can be calculated by Ohm's Law. Since the current in a series circuit is constant, the intersection of the graphs, or the Q-Point, is were both the circuit and diode's requirements meet, which means it is where the circuit will operate. I found <a href="https://www.youtube.com/watch?v=TaTGnbxIMdY" class = "link"> this video </a> helpful.</p>
     </div>
     <div class=col-sm-5>
       <img src="./IV.PNG" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="I-V Circuit">
@@ -45,16 +45,20 @@
   </div>
 
 
-  <h4 class = "subhead" style = "margin-bottom: 25px;"> Simple Resistor Circuit Calculations</h4>
+  
 
   <div class = "row">
 
     <div class=col-sm-7>
-      <p class = "desc"> I applied my new theoretical knowledge into calculating the voltage, current, and resistance across all resistors of a simple circuit. I chose 5v as the input voltage and resistors that were all powers of 10 to make the calculations easier. This was mostly just applying the formulas I had just derived: first, calculating the resistance for paralell resistors, then finding the current running through the entire circuit, then calulating voltage across series resistors, and finally applying Ohm's law to find the current. To test this, I hooked the circuit up to my power supply and measured the voltage and resistance across each resistor with my multimeter. Once this worked, I attached the circuit to my Arduino and read the voltage using the A0 pin. To avoid burning out the 3.3v logic of the Metro, I relied on the fact that the 5v used in my original calculations was only ever used as a scaling factor, meaning I could just multiply the 0-3.3v range to get 0-5v and obtain readings accurate to a 5v circuit.</p>
+
+      <h4 class = "subhead" style = "margin-bottom: 25px;"> Simple Resistor Circuit Calculations</h4>
+
+      <p class = "desc"> I applied my new theoretical knowledge into calculating the voltage, current, and resistance across all resistors of a simple circuit before measuring the circuit. I chose 5v as the input voltage and resistors that were all powers of 10 to make the calculations easier. This was mostly just applying the formulas I had just derived: first, calculating the resistance for paralell resistors, then finding the current running through the entire circuit, then calulating voltage across series resistors, and finally applying Ohm's law to find the current. To test this, I hooked the circuit up to my power supply and measured the voltage and resistance across each resistor with my multimeter. I was suprised to see that I had gotten the same results as my theoretical calculations. Once this worked, I attached the circuit to my Arduino and read the voltage using the A0 pin. To avoid burning out the 3.3v logic of the Metro, I relied on the fact that the 5v used in my original calculations was only ever used as a scaling factor, meaning I could just multiply the 0-3.3v range to get 0-5v and obtain readings accurate to a 5v circuit.</p>
     </div>
     <div class=col-sm-5>
       <img src="./resistDraw.jpg" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="Schematic">
       <img src="./resist.jpg" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="The actual circuit">
+       <img src="./SIM.PNG" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="The actual circuit">
     </div>
   </div>
 
@@ -64,7 +68,11 @@
   <div class = "row">
 
     <div class=col-sm-7>
+<<<<<<< HEAD
       <p class = "desc"> For this part of the assignment, I wanted to choose a sensor that I could actually obeserve differences in easily. I chose the <a href = "https://roberthart56.github.io/SCFAB/SC_lab/Sensors/Light/Photodetectors/index.html" class="link">phototranistor</a>. While technically not a variable resistance sensor and instead a light activated transistor, it functions the same as a variable resistance sensor in a voltage divider circuit by letting no voltage through when fully bright and acting as a wire when fully dark. This means that when lit and open, the V<sub>p</sub> = V<sub>in</sub> and when fully dark and closed V<sub>p</sub> = 0. Because the amount of light and V<sub>p</sub> are inversely proportional, I measured the drop across the resistor instead of the drop across the phototransistor. Because I was measuring the drop across the resistor, I needed a very high resistance resistor to get the values in the right range to measure with the Metro. I also added a LED which would have a brightness value (0-255) mapped from the sensor range to indicate the reading of the sensor.<a href="./AnalogReadSerial.INO" download class="link"> Here is the code. </a></p> 
+=======
+      <p class = "desc"> For this part of the assignment, I wanted to choose a sensor that I could actually obeserve differences in easily. I chose the <a href = "https://roberthart56.github.io/SCFAB/SC_lab/Sensors/Light/Photodetectors/index.html" class="link">phototransistor</a>. While technically not a variable resistance sensor and instead a light activated transistor, it functions the same as a variable resistance sensor in a voltage divider circuit by letting no voltage through when fully bright and acting as a wire when fully dark. This means that when lit and open, the V<sub>p</sub> = V<sub>in</sub> and when fully dark and closed V<sub>p</sub> = 0. Because the amount of light and V<sub>p</sub> are inversely proportional, I measured the drop across the resistor instead of the drop across the phototransitor. Because I was measuring the drop across the resistor, I needed a very high resistance resistor to get the values in the right range to measure with the Metro. I also added a LED which would have a brightness value (0-255) mapped from the sensor range to indicate the reading of the sensor.<a href="./AnalogReadSerial.INO" download class="link"> Here is the code. </a> Note how in the demo, I don't touch the sensor leads, as then some current would flow through my finger, changing the reading. </p> 
+>>>>>>> 81a911109eacfd62019b9750aa29fc83f7696767
 
     </div>
     <div class=col-sm-5>
@@ -77,7 +85,7 @@
 
   <h4 class= "subhead" style="text-align: center; margin: 100px 0px 25px 0px;">Metro Troubleshooting</h4>
 
-  <p class = "desc" style = "text-indent: 0rem;"> I often had trouble uploading code to the Metro, as the Arduino IDE would just say uploading and never finish. To fix this, I double-tapped the reset button and checked the port that the Metro was in, as it usually changed. More tips can be found <a href="https://learn.adafruit.com/adafruit-metro-m0-express-designed-for-circuitpython/metro-m0-help" class = "link">here </a> </p>
+  <p class = "desc" style = "text-indent: 0rem;"> I often had trouble uploading code to the Metro, as the Arduino IDE would just say uploading and never finish. To fix this, I double-tapped the reset button and checked the port that the Metro was in, as it usually changed. Reinstalling the SAMD boards in the board maganger also helped. More tips can be found <a href="https://learn.adafruit.com/adafruit-metro-m0-express-designed-for-circuitpython/metro-m0-help" class = "link">here </a> </p>
 
 
 </div>
