@@ -140,3 +140,11 @@ a.link:visited{
   text-align: center;
 
 }
+
+pre {
+
+  /*color: #D8DBE2;*/
+  background-color: white;
+  border-radius: 25px;
+
+}

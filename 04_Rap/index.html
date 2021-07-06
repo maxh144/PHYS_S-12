@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>PHYS S-12: Intro to Digital Fabrication </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
+  <link href="../style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+  <nav class ="navbar container-fluid sticky-top">
+    <h2 class = "element"> <a href="../index.html" class="logo">Max H's Introduction to Digital Fabrication Documentation</a></h2> 
+    <div class="flex nav">
+      <h4 class = "element nav-element"> <a href="../about/index.html" class="logo">About Me</a> </h4>
+      <h4 class = "element nav-element"> Final Project</h4>
+    </div>
+  </nav>
+
+<div class="container-fluid">
+  <h3 class="header">Week 3: Electronics and Tools</h3> <br>
+
+  <h4 class= "subhead" style="text-align: center; margin: 100px 0px 25px 0px;"> Driving a DC Motor with a MOSFET </h4>
+
+  <div class = "row">
+      <div class="col-sm-6">
+        <p class = "desc"> I started by wiring up a simple circuit to see how a motor could be driven with a transistor. I was also curious to obsereve the actual effect of a flyback diode, so I replaced the traditional diode used with a LED. Then, I tested the motor at different speeds using the <code>analogWrite()</code> function. I observed that the lower the speed of the motor, the brighter the LED was. I assume that this was because the motor was turning off and on more often, allowing the moter to coast more, generating higher transient voltage.</p>
+      </div>
+      <div class=col-sm-6>
+        <img src="./MOSFET.jpg" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="MOSFET Circuit">
+        
+      </div>
+  </div>
+
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Kinetic Sculpture Ideas </h4>
+
+  <div class = "row">
+
+    <div class=col-sm-6>
+      <p class = "desc"> For my kinetic sculpture, I knew I wanted to use linkages of some kind. They interest me, and I saw the bearings in the kit as a easy way to get fluid movement out of a linkage system. I played around with a couple designs involving gravity pulling linkages down, and ended up settling on a double pendulum design. Double pendulums have always fascinated me since I saw <a href="https://www.youtube.com/watch?v=mZ1hF_-cubA" class = "link">this video</a>, and the chaotic motion of them allowed me to see the different types of momvement possible in simple linkages. Partly to fill the project requirement and partly to get more varied yet unending motion, I used a motor to drive the movement of the pendulum. </p>
+    </div>
+    <div class=col-sm-6>
+<iframe width="700" height="500" src="https://www.youtube.com/embed/d0Z8wLLPNE0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+  </div>
+
+
+  <div class = "row">
+
+    <div class=col-sm-7>
+
+      <h4 class = "subhead" style = "margin-bottom: 25px;"> The Linkage System </h4>
+
+      <p class = "desc"> I started by modeling the linkage system in Fusion 360. I first brought in the dimensions of one bearing and modeled a simple arm off of there, with one end fitting a bearing and one with a pin to stick into the next bearing. Making this design parametric ended up being very helpful to get the length of each linkage and the toleranes for 3D printing right. I printed out these linkages as lightweight as I could, as I knew that flinging these around would be heard for the small motors in the kit if they were heavy. </p>
+    </div>
+    <div class=col-sm-5>
+      <img src="./assembly.PNG" class="img-responsive margin center" style="width:100%; margin-top: 75px;" alt="Assembly">
+    </div>
+  </div>
+
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Assembling the Sculpture</h4>
+
+  <div class = "row">
+
+    <div class=col-sm-7>
+      <p class = "desc"> To assemble the linkage, I had to wrap some parts in electrical tape to get the tolerances right. This ended up working pretty well, and I was left with parts that stayed attached to eachother but also spin. Then, I attached the linkage to a servo horn, making sure to screw the horn into the servo with the linkage pointing down while the servo was centered, using more tape. I chose the servo rather than the other motors in the kit because it allowed for faster movement, providing the speed for more interesting motion. I mounted this servo on top of a simple cardboard enclosure, using chopsticks to hold up the front half, and put the electronics, an Arduino and 2 potentiometers, inside that enclosure. I used the poteniometers as sensors for user input to control how far the linkage swang and the time between swings. I later also realized that having these as real-time controls allowed for interesting motion when switching values. Finally, I added LEGO wheels to the bottom, gluing LEGO plates and then attaching to those for reuseability, to possibly allow the motion of the linkage to move the sculpture. This didn't work very well but was fun to try. I also attached a contrasting peice of white paper to the end of the linkage to make it easier to follow.</p> 
+
+    </div>
+    <div class=col-sm-5>
+      <img src="./final.jpg" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="Final Product">
+      <video  class="img-responsive margin center" style="width:100%; margin-top: 25px;" controls>
+        <source src="./demo.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> The Code</h4>
+
+
+  <div class = "row">
+    <div class="col-sm-6">
+      <p class = "desc"> The code for the sculpture was simple and similar to the class demos, except for my swapping out of the DC motor for a servo. For controlling the servo, I included the <code>&ltServo.h&gt</code> library, and controlled the position using degree values. This meant that instead of the distance potentiometer controlling the time the motor was on, it controlled how far the end angle was from 90°, or center. Full code <a href="./sculpture.ino" class="link" download> here</a>.</p> 
+    </div>
+    <div class = "col-sm-6">
+      <pre><code>
+        
+          angle = analogRead(A1);
+          wait = analogRead(A2) + 500; //delay is at least 500ms
+
+
+          myServo.write(90 + map(angle, 0, 1023, 0, 90));
+          delay(wait);
+
+          myServo.write(90 - map(angle, 0, 1023, 0, 90));
+          delay(wait);
+
+      </code></pre> 
+    </div>
+  </div>
+
+
+  <h4 class= "subhead" style="text-align: center; margin: 100px 0px 25px 0px;"> Final Thoughts </h4>
+
+  <p class = "desc" style = "text-indent: 0rem;"> I am overall happy with how the sculpture turned out. I wish I had made the sculpture larger and heavier in general, so I could attach a LED and battery to the end and use a larger motor to get more dramatic motion. I also noticed that by moving the sculpture on its wheels back and forth, the arm moved similar to if the motor was driven, so this could be fun to experiment with. Attaching the motor and joints in a more robust way would also help to keep the motion more consistent in the future.</p>
+
+
+</div>
+
+</body>
+</html>
