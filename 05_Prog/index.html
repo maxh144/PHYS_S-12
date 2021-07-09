@@ -27,13 +27,7 @@
   <h4 class= "subhead" style="text-align: center; margin: 100px 0px 25px 0px;"> Data Visualization </h4>
 
   <div class = "row">
-      <div class="col-sm-6">
         <p class = "desc"> For the coding part of this assignment, I wanted to use LEDs to visualize algorithims I had used before to better understand how they work. I chose 2 algorithms: An algorithm that compares all the elements in an array, and a binary counter. To do this, I needed an 1 x 4 array and a button. </p>
-      </div>
-      <div class=col-sm-6>
-        <img src="./MOSFET.jpg" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="MOSFET Circuit">
-        
-      </div>
   </div>
 
 
@@ -45,21 +39,41 @@
       <p class = "desc"> To keep the circuit compact and to try using a new mircocontroller, I wanted to program these visuializations with the ESP32 Huzzah rather than the Metro. This was similar to working with a Metro, except for the strange pinout and high pin numbers. I used <a href="https://makeabilitylab.github.io/physcomp/esp32/assets/images/AdafruitHuzzah32PinDiagram.png" class="link">this</a> guide to help. I wanted all of the 4 LEDs to be the same color, which meant that I had to use the RGB LEDs from the kit. Using <a href="https://www.circuitbread.com/tutorials/how-rgb-leds-work-and-how-to-control-color" class="link">this</a> guide, I realized that I only needed to wire 2 of the legs if I wanted solid blue LEDs. Since the LEDs in the kit were common cathode, I wired the longest leg to ground. The button is wired with the internal pullup resistors. </p>
     </div>
     <div class=col-sm-6>
-<iframe width="700" height="500" src="https://www.youtube.com/embed/d0Z8wLLPNE0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <img src="./circuit.jpg" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="Circuit">
 </div>
   </div>
 
 
+      <h4 class = "subhead" style = "margin-bottom: 25px;"> Code 1: Array Comparison </h4>
+
   <div class = "row">
 
-    <div class=col-sm-7>
-
-      <h4 class = "subhead" style = "margin-bottom: 25px;"> Code 1: Array Comparison </h4>
+    <div class=col-sm-4>
 
       <p class = "desc"> This code used a button to switch between 2 common nested for loop uses: a staircase style where j starts as i, and a variation where i is compared to j. I switched between these with a button that acted as a switch, attached to a interrupt. The interrupt is triggered on <code>FALLING</code>, meaning the function is called when the button is pressed. A condition is added into the interrupt function (ISR) so that it can't be executed more than once every 200ms. </p>
     </div>
-    <div class=col-sm-5>
-      <img src="./assembly.PNG" class="img-responsive margin center" style="width:100%; margin-top: 75px;" alt="Assembly">
+    <div class=col-sm-4 style="text-align: center;">
+      <video  class="img-responsive margin center" style=" margin: 100px 15px 0px -35px; width:110%;"; controls muted autoplay>
+        <source src="./loop.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class=col-sm-4 style=" margin-top: 50px;">
+      <pre style="width:100%; font-size: 1.3rem;"><code>            
+  for (int i = 0; i < 4; i++) {
+
+     digitalWrite(LED[i], HIGH);
+
+    for (int j = i + 1; j < 4; j++) {
+
+      digitalWrite(LED[j], HIGH);
+      delay(wait);
+      digitalWrite(LED[j], LOW);
+
+    }
+
+    digitalWrite(LED[i], LOW);
+  }
+      </code></pre> 
     </div>
   </div>
 
@@ -72,49 +86,37 @@
       <p class = "desc"> This code has 2 parts. One simply counts the number of times a button has been pressed, with a timer and for stability without missing button presses, and a function that converts a base 10 number to a number in binary. This function is a slightly modified version of one that would output the binray number as a string, changing the state of an LED instead of writing to a string. </p> 
 
     </div>
-    <div class=col-sm-4 style="overflow: hidden;">
-      <video  class="img-responsive margin center" style="width:100%; height:80%; overflow:hidden;" controls muted>
+    <div class=col-sm-4 style="text-align: center;">
+      <video  class="img-responsive margin center" style=" margin-left: -35px; width:110%; margin-top:75px"; controls muted autoplay>
         <source src="./binary.mp4" type="video/mp4">
       </video>
     </div>
      <div class=col-sm-4>
       <pre style="width:100%; font-size: 1.3rem;"><code>            
-        for (int i = 3; i >= 0; i--) {
+  for (int i = 3; i >= 0; i--) {
 
-          if (total - pow(2, i) >= 0) {
-            total -= int(pow(2, i));
-            digitalWrite(LED[3 - i], HIGH);
-          }
-          else {
-            digitalWrite(LED[3 - i], LOW);
-          }
-        }
+    if (total - pow(2, i) >= 0) {
+      total -= int(pow(2, i));
+      digitalWrite(LED[3 - i], HIGH);
+    }
+    else {
+      digitalWrite(LED[3 - i], LOW);
+    }
+  }
       </code></pre> 
     </div>
   </div>
 
 
-  <h4 class = "subhead" style = "margin-bottom: 25px;"> The Code</h4>
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Final Project Prototyping</h4>
 
 
   <div class = "row">
     <div class="col-sm-6">
-      <p class = "desc"> The code for the sculpture was simple and similar to the class demos, except for my swapping out of the DC motor for a servo. For controlling the servo, I included the <code>&ltServo.h&gt</code> library, and controlled the position using degree values. This meant that instead of the distance potentiometer controlling the time the motor was on, it controlled how far the end angle was from 90°, or center. Full code <a href="./sculpture.ino" class="link" download> here</a>.</p> 
+      <p class = "desc"> </p> 
     </div>
     <div class = "col-sm-6">
-      <pre><code>
-        
-          angle = analogRead(A1);
-          wait = analogRead(A2) + 500; //delay is at least 500ms
-
-
-          myServo.write(90 + map(angle, 0, 1023, 0, 90));
-          delay(wait);
-
-          myServo.write(90 - map(angle, 0, 1023, 0, 90));
-          delay(wait);
-
-      </code></pre> 
+    
     </div>
   </div>
 
