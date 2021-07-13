@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>PHYS S-12: Intro to Digital Fabrication </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
+  <link href="../style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+  <nav class ="navbar container-fluid sticky-top">
+    <h2 class = "element"> <a href="../index.html" class="logo">Max H's Introduction to Digital Fabrication Documentation</a></h2> 
+    <div class="flex nav">
+      <h4 class = "element nav-element"> <a href="../about/index.html" class="logo">About Me</a> </h4>
+      <h4 class = "element nav-element"> Final Project</h4>
+    </div>
+  </nav>
+
+<div class="container-fluid">
+  <h3 class="header">Week 6: 3D Printing</h3> <br>
+
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Compliant Mechanisms </h4>
+
+  <div class = "row">
+
+    <div class=col-sm-6>
+      <p class = "desc"> For the 3D printing side of this assignment, I wanted to make a compliant mechanism. I had seen them all over the internet, but hadn't printed many compared to PIP hinges so they were more interesting to me. In the past, I learned through Soft Robotics that mechanisms that automatically respond to their envionrment are very powerful, so I wanted to recreate this idea in compliant mechanisms. Incorportating this component into a relatively simple mechanism and idea, as I had already spent a lot of time on Photogrammatry, I settled on making a scale out of springs that deforms more with heavier weight. This scale can't take exact measurements, but is instead used to compare different objects. This ended up being much harder than I expected. I started by modeling a simple zig-zag out of 20mmx20mmx3mm plates, adding an arm to each end to attach to the table and a peice of cardboard respectively. The carboard attached with thin slits in the plastic that bent to grip it. I opted to 3D print just the springs and not an entire platform to save plastic and be able to print without supports. This first design was much too stiff, so I had to go through multiple iterations of thickness, plate angle and size. I reached my final design when I realized that the longer ends of the springs did bend quite well, so I extended the length of all of the plates. <a href="./scale4.stl" class="link" download>STL</a></p>
+    </div>
+    <div class=col-sm-6>
+      <img src="./springs.jpg" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="Springs">
+      <img src="./scale.jpg" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="Scale">
+</div>
+  </div>
+
+
+      <h4 class = "subhead" style = "margin-bottom: 25px;"> Slicing </h4>
+
+  <div class = "row">
+
+    <div class=col-sm-6>
+
+      <p class = "desc"> Part of the challenge in getting the springs to bend properly was in slicing. I opted for 0.3mm thickness to make prototyping quicker, but this also made each individual layer stronger as it was thicker, possibly making it harder to bend. I printed with walls thinner than standard and no infill, both only possible since this object was 3D printed, to make it bendable. The models are printed on their side, keeping them strong in the vertical direction and removing the need for supports. I tried printing faster than normal, 90mm/s, to make the process quicker, and this worked well. This file is sliced for my Ultimaker 3 in G-Code and took about an hour to print for the final iteration. <a href="./UM3_scale.gcode" class="link" download>G-Code</a></p>
+    </div>
+    <div class=col-sm-6 style="text-align: center;">
+        <img src="./sliced.PNG" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="Sliced Model">
+    </div>
+  </div>
+
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Photogrammetry</h4>
+
+  <div class = "row">
+
+      <p class = "desc"> For my tests in Photogrammetry, I chose Meshroom. I have heard it praised often for being open-source and effective in the 3D Art community. I used <a href="https://blog.prusaprinters.org/photogrammetry-2-3d-scanning-simpler-better-than-ever_29393/" class="link">this tutorial</a> from Prusa to get started and <a href="https://www.youtube.com/watch?v=k4NTf0hMjtY" class="link">this tutorial</a> for post-prossessing. I also ended up using <a href="https://meshroom-manual.readthedocs.io/en/latest/tutorials/sketchfab/sketchfab.html" class="link">this tutorial</a> for Meshroom. My main takeway from watching these was that I needed a large, diverse set of pictures, so that is where I started. All of my tests ended up being about 200-300 pictures.</p> 
+
+  </div>
+
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Test 1: Island</h4>
+
+
+  <div class = "row">
+    <div class="col-sm-6">
+      <p class = "desc"> I started by taking advantage of the Phantom 4 drone I have to photoscan an island I live nearby. I figured that photoscanning would work best on nature with its texture and roughness, so this island felt like a pretty easy scan with its rock and trees on a overcast day. I had the drone orbit the island at different levels while I took 4K RAW pictures. I then loaded these photos into Meshroom, hit start, and waited the night. I was left with a 3D model of the island and the surrounding area, and then imported the model into Blender to remove the surrounding landscape and render a photo out. The surrounding area had an interesting effect, being water, where it modeled the reflections in the water as buildings and trees underneath the ground.</p> 
+    </div>
+    <div class = "col-sm-6">
+       <img src="./island2.PNG" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="Island in Meshroom">
+       <img src="./island.PNG" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="Render">
+    
+    </div>
+  </div>
+
+
+
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Test 2: Controller</h4>
+
+
+  <div class = "row">
+    <div class="col-sm-6">
+      <p class = "desc"> Empowered by my success, I moved on to scanning something for more of a pratical use case: scanning a complex shape to model something around it. I chose my Switch controller, as it contained curves that would be difficult to match by remodeling. I taped the bottom of it to a tall flashlight, and took it outisde to scan. I scanned using my phone, but just RAW photos since I don't have a iPhone. I brought the photos inside and processed them the same as the first test. It finished much faster, in about an hour, but the results were quite dissapointing. The entirety of the grips and bottom were misshapen and not accurate. I went back to the drawing board. Taking the advice from Prusa more seriously, I covered the grips, bottom, and back of the controller with masking tape to make them less reflective. Even then, they still felt too shiny to me so I sanded down the tape with 200 grit sandpaper. I forgot to sand the back masking tape, something important for later. I went back outside and took more photos. Once these photos were prossessed, I was left with an acceptable model of the controller. The back was missing, as I forgot to sand it. The front of the controller, particuarly the sticks, was slightly inaccurate, still being too shiny. I originally took the model to Blender to clean it up, but after reading through some of the students' previous projects, I realized that Meshroom had a lot of these tools built in, most importantly denoising. This helped to smooth out the overall shape while losing some detail like the buttons. The difference can be seen in the 2 renders to the right. If I was doing this again, I would coat the enitre controller in some anti-reflective material and make my own texture to make the model look normal. <a href="./cont.stl" class="link" download>STL (Smoothed in Blender)</a></p> 
+    </div>
+    <div class = "col-sm-6">
+       <img src="./contBad.PNG" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="Failure">
+       <img src="./cont.PNG" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="Model">
+       <img src="./cont2.PNG" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="Denoised">
+    
+    </div>
+  </div>
+ 
+
+
+</div>
+
+</body>
+</html>
