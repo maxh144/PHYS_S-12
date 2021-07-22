@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>PHYS S-12: Intro to Digital Fabrication </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
+  <link href="../style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+  <nav class ="navbar container-fluid sticky-top">
+    <h2 class = "element"> <a href="../index.html" class="logo">Max H's Introduction to Digital Fabrication Documentation</a></h2> 
+    <div class="flex nav">
+      <h4 class = "element nav-element"> <a href="../about/index.html" class="logo">About Me</a> </h4>
+      <h4 class = "element nav-element"> Final Project</h4>
+    </div>
+  </nav>
+
+<div class="container-fluid">
+  <h3 class="header">Week 9: IoT</h3> <br>
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Goal </h4>
+
+  <div class = "row">      
+      <p class = "desc"> For this assignment, I wanted to focus on a goal that I needed for my final project rather than using one specific technology: Getting a livestream of video from the ESP-32 CAM and sensor data values in a website, with enough range to work for a RC craft. I also didn;t want this to rely on Wifi, as this would limit my mobility.  </p>
+  </div>
+
+    <h4 class = "subhead" style = "margin-bottom: 25px;">  Camera Example </h4>
+
+    <div class = "row">
+
+    <div class=col-sm-6>
+
+      <p class = "desc"> I wanted to test the camera capabilities of the ESP CAM, so I loaded up the camera example from the IDE (Guide <a class="link" href="https://randomnerdtutorials.com/esp32-cam-video-streaming-face-recognition-arduino-ide/ "> here </a>). This example starts up similar to how a program using the ESP as local server would, printing a local IP. This IP contains a full website with HTML, CSS, and JS. Since all the code was in Arduino, this confused me immensly. I decided to leave the example behind for now.</p>
+    </div>
+    <div class=col-sm-6 style="margin-top: 50px;">
+      <img src="./example.PNG" class="img-responsive margin center" style="width:100%; margin-top: -20px;" alt="Example Code">
+    </div>
+  </div>
+
+  
+  <h4 class = "subhead" style = "margin-bottom: 25px;">  ESP-NOW </h4>
+
+  <div class = "row">
+      <p class = "desc"> First, I tried using ESP-NOW. This felt like the obvious choice, since it worked off radio, which is fast and long-range. I followed the <a class="link" href="https://randomnerdtutorials.com/esp-now-esp32-arduino-ide/">ESP-NOW tutorial</a> from RandomNerd, and this also was the end of my tests with ESP-NOW. I found out from this tutorial that the maximum package size of ESP-NOW is 250 bytes, which is nowhere near enough to livestream video. After doing a bit more research to see if this limit could be overcome, I decided to abandon ESP-NOW.</p>
+  </div>
+
+
+  <div class = "row">
+
+    <div class="col-sm-6">
+
+      <h4 class = "subhead" style = "margin-bottom: 25px;"> VTX Transmitter</h4>
+
+      <p class = "desc"> From former RC projects, I had a VTX transmitter lying around, so I wondered if I could use that. The transmitter takes in a video line and sends the video to a reciever connected to a headest. I did some research to see if I could get the ESP-CAM to output a video feed that the transmitter could use as an output, but had no luck. All code surrounding the camera on the ESP-CAM was very unintuitive. All code on the internet was based around the example found in the IDE, making it impossible to isolate a video feed.</p> 
+    </div>
+    <div class="col-sm-6">
+      <img src="./VTX.jfif" class="img-responsive margin center" style="width:100%; margin-top: 60px;" alt="VTX Transmitter">
+    </div>
+  </div>
+
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Modifing the example</h4>
+
+
+  <div class = "row">
+
+
+    <div class="col-sm-6">
+      <p class = "desc"> Realizing that the only video feed I had was from the example, I switched course to modifing the example to fit my needs. First, I switched the ESP CAM from using a local WiFi network to being its own access point <a class="link" href="https://randomnerdtutorials.com/esp32-cam-access-point-ap-web-server/">here</a>. I had seen this around the internet as a solution for DIY smart home devices that wouldn't have internet connectivity, and it reportedly had enough range (~300m). Next, I wanted to see if it was possible to modify the deault HTML of the example, and I found <a class="link" href="https://robotzero.one/esp32-cam-custom-html/"> this</a>. This showed that one of the files in the example, <code>camera_index.h</code>, which was only an massive array of HEX values, was actually a hexidecimal representation of the code of the website. To better understand this code, I spent some time playing around with the website in Inspect mode in Chrome. While I was doing this, I found something very interesting in the live video feed: the feed was just an <code>&ltimg&gt</code> tag, with a source of another local IP. This IP took my to a blank webpage with only the video feed. I made my own template website with this image tag, and it gave me the live feed. This meant that I could make my own website to serve my own needs.</p> 
+    </div>
+    <div class="col-sm-6">
+      <img src="./HEX.PNG" class="img-responsive margin center" style="width:100%; margin-top: 60px;" alt="HTML Code">
+      <img src="./HTML.PNG" class="img-responsive margin center" style="width:100%; margin-top: 60px;" alt="HTML Code">
+    </div>
+  </div>
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;">Transmitting Sensor Data</h4>
+
+  <div class = "row">
+    <div class="col-sm-6">
+
+
+      <p class = "desc"> I also needed a way to transmit sensor data. Since I was already using Wifi for the video feed, I first found some tutorials using Wifi to transmit data. I couldn't get any of these to work because of the interfering Wifi code for the camera to work. I went back into the .cpp file of the example to see how the Wifi is set up, and found something very interesting. The <code>startCameraServer</code> function had blocks of code that set up extensions and used HTTP GETs. Since there was one of these for the index page, it looked like each one was a seperate webpage. I tried going to the status one, and was met with some JSON text containing data about the status of the camera. I copied this code and modifed it to create my own JSON for sensor information, /sensor. To let this JSON get sensor data, I put a function in the main .ino file to return a value, and then put in a prototype for this function at the top of the.cpp file. While changing the .cpp file, I also removed the ability for the default website to control quality like resolution and brightness, and set them myself at the start of the code in a setup function, using <a class="link" href="https://randomnerdtutorials.com/esp32-cam-ov2640-camera-settings/"> this </a> info.</p> 
+
+      <pre style="width:100%; font-size: 1.3rem; text-align: center;"><code>            
+  {"framesize":43}
+      </code></pre>
+
+    </div>
+    <div class = "col-sm-6">
+
+    <pre style="width:100%; font-size: 1.3rem;"><code>            
+ httpd_uri_t status_uri = {
+        .uri       = "/status",
+        .method    = HTTP_GET,
+        .handler   = status_handler,
+        .user_ctx  = NULL
+    };
+    </code></pre>
+
+    <pre style="width:100%; font-size: 1.3rem; margin-top: 70px;"><code>            
+  static esp_err_t sensor_handler(httpd_req_t *req){
+      static char json_response[1024];
+      char * p = json_response;
+      *p++ = '{';
+
+      p+=sprintf(p, "\"framesize\":%u", test()); //ACTUAL IMPORTANT LINE
+   
+      *p++ = '}';
+      *p++ = 0;
+      
+      httpd_resp_set_type(req, "application/json");
+      httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
+      return httpd_resp_send(req, json_response, strlen(json_response));
+  }
+    </code></pre>
+    </div>
+     
+  </div>
+
+
+   <div class = "row">
+    <div class="col-sm-6">
+
+      <h4 class = "subhead" style = "margin-bottom: 25px;">Recieving Sensor Data</h4>
+
+
+      <p class = "desc"> Now that I had my ESP CAM outputting the sensor data to a website, I just needed some JS code to take this JSON and harvest data from it, similar to how it would with an API. Since I don't really know any JS, I just started trying diffrent methods I found, mostly following the Mozilla Web Docs. I ended up using Fetch, as it was easiest to get working, following <a href="https://developers.google.com/web/updates/2015/03/introduction-to-fetch" class="link">this</a>,  <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data" class="link">this</a>, and  <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON" class="link">this</a> tutorial. I also found  <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON" class="link">this</a> helpful in getting the text into JSON so I could parse it. By then putting all of this code inside a function and setting up that function to repeat using  <a href="https://www.codegrepper.com/code-examples/javascript/js+repeat+function+every+x+seconds" class="link">setInterval()</a>, I was left with a working website to retrieve my data.</p> 
+    </div>
+    <div class = "col-sm-6">
+      <pre style="width:100%; font-size: 1.3rem; margin-top: 70px;"><code>            
+  let url = 'http://192.168.4.1/sensor';
+      
+      function updateVals(){
+      fetch(url).then(function(response) {
+          response.json().then(function(data) {
+              document.getElementById('depth').innerHTML = 
+                "Value: " + data['framesize'];
+          });
+      });
+  }
+
+  setInterval(updateVals, 500);
+    </code></pre>  
+
+    </div>
+     
+  </div>
+
+  <div class=row>
+
+     <img src="./final.PNG" class="img-responsive margin center" style="width:80%; margin-top: 60px; margin-bottom: 60px;" alt="VTX Transmitter">
+
+  </div>
+
+  <div class="flex-h">
+
+        <button class=button type="button"><a href="./Code.zip" download>Code</a></button>
+
+        <button class=button type="button"><a href="./test.html">Website (Inspect for Code)</a></button>
+
+  </div>
+
+</div>
+
+</body>
+</html>

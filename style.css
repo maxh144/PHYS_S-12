@@ -141,6 +141,62 @@ a.link:visited{
 
 }
 
+.flex-c{
+
+
+  display:  flex;
+  flex-direction: column;
+
+
+}
+
+.flex-h{
+
+
+  display:  flex;
+  flex-direction: row;
+
+}
+
+.data{
+
+  background-color: blue;
+
+  margin:  50px 50px 50px 50px;
+  padding:  25px;
+  border-radius: 10px;
+
+}
+
+.data-out{
+
+  background-color: white;
+  border-radius: 25px;
+  margin: 25px;
+
+
+}
+
+.stream{
+
+  width: 300%;
+  margin: 0px;
+  margin-left:  10px;
+
+
+}
+
+.button{
+
+
+    background-color: #115160;
+    color: #D8DBE2;
+    border-radius: 15px;
+    padding: 25px;
+    margin:  auto;
+
+}
+
 pre {
 
   /*color: #D8DBE2;*/
