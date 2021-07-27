@@ -162,7 +162,7 @@ a.link:visited{
 
   background-color: blue;
 
-  margin:  50px 50px 50px 50px;
+  margin:  20px 50px 20px 50px;
   padding:  25px;
   border-radius: 10px;
 
@@ -173,6 +173,7 @@ a.link:visited{
   background-color: white;
   border-radius: 25px;
   margin: 25px;
+  height: 100%;
 
 
 }

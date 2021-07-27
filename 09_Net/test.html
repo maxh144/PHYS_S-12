@@ -11,17 +11,19 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
 </head>
 
-<body>
+<body style="height: 100%">
 
-<div class="flex-h">
+<div class="flex-h" style="height: 100%">
 
     <div class="flex-c data-out">
 
 
-        <h3 id="depth" class="data"> Depth: NULL</h3>
+        <h3 id="volt" class="data"> Voltage: NULL</h3>
         <h3 id="dist" class="data"> Distance: NULL</h3>
-        <h3 id="test" class="data"> Value: NULL</h3>
-        <h3 id="test" class="data"> Value: NULL</h3>
+        <h3 id="speed" class="data"> Speed: NULL</h3>
+        <h3 id="depth" class="data"> Depth: NULL</h3>
+        <h3 id="span" class="data"> Span: NULL</h3>
+        <h3 id="sat" class="data"> Satellites: NULL</h3>
 
 
     </div>
@@ -42,13 +44,18 @@
     fetch(url).then(function(response) {
         response.json().then(function(data) {
 
-            document.getElementById('depth').innerHTML = "Value: " + data['framesize'];
+
+            document.getElementById('speed').innerHTML = "Speed: " + data['Speed'];
+            document.getElementById('depth').innerHTML = "Depth: " + data['Altitude'];
+            document.getElementById('span').innerHTML = "Span: " + data['DTH'];
+            document.getElementById('sat').innerHTML = "Depth: " + data['Sats'];
+            
 
         });
     });
 }
 
-setInterval(updateVals, 500);
+setInterval(updateVals, 1000);
 
 
 </script>
