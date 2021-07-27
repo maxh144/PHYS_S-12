@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>PHYS S-12: Intro to Digital Fabrication </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
+  <link href="../style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+  <nav class ="navbar container-fluid sticky-top">
+    <h2 class = "element"> <a href="../index.html" class="logo">Max H's Introduction to Digital Fabrication Documentation</a></h2> 
+    <div class="flex nav">
+      <h4 class = "element nav-element"> <a href="../about/index.html" class="logo">About Me</a> </h4>
+      <h4 class = "element nav-element"> Final Project</h4>
+    </div>
+  </nav>
+
+<div class="container-fluid">
+  <h3 class="header">Week 10: Machine Building</h3> <br>
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> 2 Linear Stages </h4>
+
+  <div class = "row">      
+      <p class = "desc"> I wanted to keep my project this week simple so I had time to work on my final project, but also make something with a tangibile result. I started by combining the 2 linear stages in the kit. </p>
+  </div>
+
+    <div class = "row">
+
+    <div class=col-sm-6>
+
+      <h4 class = "subhead" style = "margin-bottom: 25px;"> Linear Stages </h4>
+
+      <p class = "desc"> The linear stages from the kit should have been easy to assemble, but I made a lot of mistakes that made it much more difficult. When I was cutting the G2 timing belt, I cut it just a bit too short, meaning that it would be streched too tight. I used a timing belt connector I had to fix this, putting it opposite where the belt attached to the carriage. Because this metal connector was thicker than the timing belt, the bearings kept running into the connector. I experimented with a lot of different ways and positioning of the objects in the kit to solve this, and ended up moving the bearings to the smaller side of the carriage and pushing the screws attaching them outwards using nuts to solve this. To attach the 2 linear stages together, I used the L bracket provided in the kit. To attach the bracket to the carriage, I used m3 screws with extra nuts (again) to push the bracket away from the wood of the cariage, so the peices of the carraige had room to snap together. While building, I decided I wanted to make a plotter to plot graphs onto my whiteboard. To do the plotting, I attached a marker to one of the carraiges. I laid one of the axis horizontally, putting each end on a book to make sure the carriage didn't hit the floor. The other axis went upwards from the carriage. </p>
+    </div>
+    <div class=col-sm-6 style="margin-top: 50px;">
+      <img src="./connect.jpg" class="img-responsive margin center" style="width:100%; margin-top: 20px;" alt="Connector">
+      <img src="./bracket.jpg" class="img-responsive margin center" style="width:100%; margin-top: 20px;" alt="bracket">
+    </div>
+  </div>
+
+
+  <div class = "row">
+    <div class = "col-sm-6">
+
+      <h4 class = "subhead" style = "margin-bottom: 25px;">  Wiring </h4>
+
+      <p class = "desc"> For the wiring, I just followed the example from class, doubling the stepper cicruit for my 2 motors. In my testing at first, I used the 5 volts from the Metro, but this wasn't enough to actually move my stepper motors. The motors started actually moving once I switched to 9 volts. Since I was using 9 volts, I also had to turn down the trim pots to 0.4-0.5v. </p>
+    </div>
+    <div class="col-sm-6">
+      <img src="./wiring.jpg" class="img-responsive margin center" style="width:100%; margin-top: 100px;" alt="Wiring">
+    </div>
+  </div>
+
+
+ <h4 class = "subhead" style = "margin-bottom: 25px;"> Code </h4>
+
+  <div class = "row">
+
+    <div class="col-sm-6">
+
+      <p class = "desc"> I wrote my code without the use of any stepper library, so I didn't have to worry about acceleration and could easily move the motors one step at a time. I treated each step as one unit of my grid to graph on. After some testing, I found that each axis could move about 2500 steps total, to I had a 2500x2500 grid to graph on. The code keeps track of the x and y position of the marker, since the stepper motors don't have any way of telling their position on their own. Each time the code loops, it moves over the x position by one step. It then takes the new x position and inputs that into a function, telling it where the y position will be. Using its current y position, the code finds the number of steps the motor needs to travel and in which direction. It then moves there and updates the y position. To make sure the positions are accurate, the marker must start in the bottom-right corner of the graphing span. The motor then moves the marker halfway up in the y direction so that the graph starts on the x axis. Obviously, this method of calibration isn't ideal, but I wanted to see how far off the position got without any calibration. The function I chose to graph was <code>A * sin(Bx - C) + D</code>, where A, B, C, and D are parameters inputted by the user of Serial using modifed code from the example. The code asks for a new sine wave to graph every time it has reached the end of the x axis. <a class="link" href="./stepper.ino" download>Code</a></p> 
+    </div>
+    <div class="col-sm-6">
+       <pre style="width:100%; font-size: 1.3rem;"><code>            
+  digitalWrite(stepPin, LOW); // X mvmt
+    delay(1);
+    digitalWrite(stepPin, HIGH);
+    delay(1);
+
+    dist =  getY(x) - y;
+
+    if (dist > 0) {
+      digitalWrite(dirPin2, LOW);
+
+    }
+    else {
+      digitalWrite(dirPin2, HIGH);
+    }
+
+    for (int i = 0; i < abs(dist); i++) { // Y mvmt
+
+      digitalWrite(stepPin2, LOW);
+      delay(1);
+      digitalWrite(stepPin2, HIGH);
+      delay(1);
+
+    }
+
+    y += dist;
+    x++;
+    </code></pre>
+    </div>
+  </div>
+
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Final Result</h4>
+
+
+  <div class = "row">
+
+
+    <div class="col-sm-6">
+      <p class = "desc"> The plotter ended up working better than I expected overall, being able to draw semi smooth curves without microstepping. The main problem I had in terms of graphing was keeping the marker on the board, which could be solved with a full frame instead of 2 axis. Building this with higher quality building components would have helped to minimize the tilt in the vertical axis that also caused the marker to leave the board. If I had to repair a belt again, I would sew the 2 halves together rather than using the solution I did to keep the profile the same.</p> 
+    </div>
+    <div class="col-sm-6">
+     <video  class="img-responsive margin center" style="margin-top: 25px; width:100%;" controls muted autoplay>
+        <source src="./demo.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
