@@ -13,22 +13,21 @@ function draw() {
   background(50);
 
   angle = (currentVal / 1024.0 * 1.8 * Math.PI) + 1.9;
+  console.log(angle);
 
-  drawCircle(); 
   drawGradient();
+  drawCircle(); 
 
 }
 
 
 function drawCircle() {
-
-  let color = int(Math.abs(lastVal - currentVal) / 200.0 * 100.0);
    
     
   stroke(0);
-  strokeWeight(6);
+  strokeWeight(8);
   
-    fill(180, color, 50);
+  noFill();
 
   ellipse(355, 200, 300);
   
@@ -40,14 +39,14 @@ function drawCircle() {
 function drawGradient(){
 
     let color = 0.0;
-    let angle = currentVal / 512.0 * Math.PI;
+    let addVal = 0.3;
 
-    for(let i = 0.0; i <= angle; i += 0.005){
+    for(let i = 1.96; i <= angle; i += 0.005){
 
-        stroke(color, 100, 100);
-        line(355, 200, 355 + 150*Math.cos(i - angle), 200 + 150*Math.sin(i- angle));
+        stroke(color % 360, 100,  Math.abs(currentVal - lastVal) + 10);
+        line(355, 200, 355 + 150*Math.cos(i), 200 + 150*Math.sin(i));
 
-        color += .3;
+        color += addVal;
 
     }
 
