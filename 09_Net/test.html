@@ -45,10 +45,12 @@
         response.json().then(function(data) {
 
 
-            document.getElementById('speed').innerHTML = "Speed: " + data['Speed'];
-            document.getElementById('depth').innerHTML = "Depth: " + data['Altitude'];
-            document.getElementById('span').innerHTML = "Span: " + data['DTH'];
-            document.getElementById('sat').innerHTML = "Depth: " + data['Sats'];
+            document.getElementById('volt').innerHTML = "Voltage: " + data['Voltage'] / 100.0 + "v";
+            document.getElementById('dist').innerHTML = "Distance: " + data['Distance'] / 100.0 + "cm";
+            document.getElementById('speed').innerHTML = "Speed: " + data['Speed'] + "kph";
+            document.getElementById('depth').innerHTML = "Depth: " + data['Altitude'] + "m";
+            document.getElementById('span').innerHTML = "Span: " + data['DTH'] + "m";
+            document.getElementById('sat').innerHTML = "Sats: " + data['Sats'];
             
 
         });
