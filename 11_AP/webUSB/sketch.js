@@ -2,6 +2,7 @@ let color;
 let lastVal = 0;
 let currentVal = 0;
 let angle;
+let radius;
 
 function setup() {
   createCanvas(710, 400);
@@ -13,7 +14,8 @@ function draw() {
   background(50);
 
   angle = (currentVal / 1024.0 * 1.8 * Math.PI) + 1.9;
-  console.log(angle);
+  radius = Math.abs(currentVal - lastVal)/3 + 50;
+  console.log(radius);
 
   drawGradient();
   drawCircle(); 
@@ -29,9 +31,9 @@ function drawCircle() {
   
   noFill();
 
-  ellipse(355, 200, 300);
+  ellipse(355, 200, 2*radius);
   
-  line(355, 200, 355 + 150*Math.cos(angle), 200 + 150*Math.sin(angle));
+  line(355, 200, 355 + radius*Math.cos(angle), 200 + radius*Math.sin(angle));
 
 
 }
@@ -44,7 +46,7 @@ function drawGradient(){
     for(let i = 1.96; i <= angle; i += 0.005){
 
         stroke(color % 360, 100,  Math.abs(currentVal - lastVal) + 10);
-        line(355, 200, 355 + 150*Math.cos(i), 200 + 150*Math.sin(i));
+        line(355, 200, 355 + radius*Math.cos(i), 200 + radius*Math.sin(i));
 
         color += addVal;
 
