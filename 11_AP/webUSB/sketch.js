@@ -3,24 +3,39 @@ let lastVal = 0;
 let currentVal = 0;
 
 function setup() {
-	createCanvas(710, 400);
+  createCanvas(710, 400);
   colorMode(HSB);
 
 }
 
 function draw() {
-	background(50);
-	drawCircle(); 
+  background(50);
+  drawCircle(); 
 }
 
 
 function drawCircle() {
 
-	let color = int(Math.abs(lastVal - currentVal) / 1024.0 * 360.0);
+  let color = int(Math.abs(lastVal - currentVal) / 200.0 * 100.0);
+    let test = (currentVal / 1024.0 * 1.8 * Math.PI) + 1.9;
+    
+  stroke(0);
+  strokeWeight(6);
+  
+    fill(180, color, 50);
 
-	stroke(0);
-	fill(color, 100, 75);
-	ellipse(50, 50, 50);
+  ellipse(355, 200, 300);
+  
+  line(355, 200, 355 + 150*Math.cos(test), 200 + 150*Math.sin(test));
+
+
+}
+
+function drawGradient(){
+
+    fill(0, 100, 100);
+  arc(355, 200, 300, 300, 1.9, test);
+    
 
 
 }
