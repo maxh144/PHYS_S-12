@@ -3,8 +3,8 @@ let lastVal = 0;
 let currentVal = 0;
 let angle;
 let radius;
-let width = 1800;
-let hieght = 1000;
+let width = 1000;
+let height = 600;
 
 function setup() {
   createCanvas(width, height);
