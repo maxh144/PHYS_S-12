@@ -43,7 +43,7 @@ function drawCircle() {
 function drawGradient(){
 
     let color = 0.0;
-     let addVal = 1.2;
+    let addVal = 1.2;
 
     for(let i = 1.96; i <= angle; i += 0.02){
 
