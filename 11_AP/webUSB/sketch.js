@@ -13,10 +13,10 @@ function setup() {
 }
 
 function draw() {
-  background(50);
+  background(150 , 30, 50);
 
   angle = (currentVal / 1024.0 * 1.8 * Math.PI) + 1.9;
-  radius = Math.abs(currentVal - lastVal)/2 + 75;
+  radius = Math.abs(currentVal - lastVal)/6 + 75;
   console.log(radius);
 
   drawGradient();
@@ -43,9 +43,9 @@ function drawCircle() {
 function drawGradient(){
 
     let color = 0.0;
-    let addVal = 0.3;
+     let addVal = 1.2;
 
-    for(let i = 1.96; i <= angle; i += 0.005){
+    for(let i = 1.96; i <= angle; i += 0.02){
 
         stroke(color % 360, 100,  Math.abs(currentVal - lastVal) + 10);
         line(width/2, height/2, width/2 + radius*Math.cos(i), height/2 + radius*Math.sin(i));

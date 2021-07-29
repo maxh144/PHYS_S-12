@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>PHYS S-12: Intro to Digital Fabrication </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
+  <link href="../style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+  <nav class ="navbar container-fluid sticky-top">
+    <h2 class = "element"> <a href="../index.html" class="logo">Max H's Introduction to Digital Fabrication Documentation</a></h2> 
+    <div class="flex nav">
+      <h4 class = "element nav-element"> <a href="../about/index.html" class="logo">About Me</a> </h4>
+      <h4 class = "element nav-element"> Final Project</h4>
+    </div>
+  </nav>
+
+<div class="container-fluid">
+  <h3 class="header">Week 11: Application Programming</h3> <br>
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Data Visuialization: Potentiometer </h4>
+
+  <div class = "row">      
+      <p class = "desc"> I chose to do some simple data visuialization with p5 and WebUSB for this week. Since it was easiest to just transmit one value, I decided on visuializaing the 0-1023 range of a potentiometer. To make a more useful and easy to understand data visuialization, I decided to stick with 2D. </p>
+  </div>
+
+    <div class = "row">
+
+    <div class=col-sm-6>
+
+      <h4 class = "subhead" style = "margin-bottom: 25px;"> Part I: Dyanmic Color </h4>
+
+      <p class = "desc"> I started with adding a basic circle on a gray background and altering the color values of that circle to indicate the "speed" of the potentiometer. I switched to thr HSB (Hue, Saturation, Brightness) color mode to be able to control different aspects of color easier than with RGB color. The speed is calculated by subtracting the 2 most recent readings from the potentiometer. This speed is then mapped onto a 0-100 range so the speed can control the saturation of the circle. In testing this, I found that on a gray background, having the circle have the same brightness as the background made it look like the background faded in from being transparent as saturation increased, which made for an interesting effect. Now that I had a way to visuialize speed, I moved on to how to visuialize the position.</p>
+    </div>
+    <div class=col-sm-6 style="margin-top: 50px;">
+      <img src="./slow.PNG" class="img-responsive margin center" style="width:80%; margin-top: 20px;" alt="Connector">
+      <img src="./faster.PNG" class="img-responsive margin center" style="width:80%; margin-top: 20px;" alt="bracket">
+    </div>
+  </div>
+
+
+  <div class = "row">
+    <div class = "col-sm-6">
+
+      <h4 class = "subhead" style = "margin-bottom: 25px;">  Part II: Wiper Position and Arcs </h4>
+
+      <p class = "desc"> At first, I overlayed a static color arc onto the circle. The arc started at 0 and ended at an angle mapped from the potentiometer value. This worked pretty well, but I wanted to make the arc have a rainbow color, so I ditched the <code>arc()</code> function and switched to making individual lines to create a solid arc. Each line ended up being 0.02 radians apart from one another to fill the circle. This way, I could vary the color (hue) of each line to get a rainbow fade radialy, similar to some of p5's color examples. I shifted the start and end points of this line-arc by altering the start of the adding to the angle after the mapping from the potentiometer value. The for loop drawing the arc stops at the wiper, giving the appearence that the wiper reveals a rainbow circle below.</p>
+    </div>
+    <div class="col-sm-6">
+      <img src="./rainbow.PNG" class="img-responsive margin center" style="width:100%; margin-top: 100px;" alt="Wiring">
+    </div>
+  </div>
+
+
+ 
+
+  <div class = "row">
+
+    <div class="col-sm-6">
+
+      <h4 class = "subhead" style = "margin-bottom: 25px;"> Part III: Combing the two </h4>
+
+      <p class = "desc"> to combine the speed and position visuilizations, I took the main rainbow arc from part II and altered its brightness, so the wheel got brighter the faster the potentiometer was going. I altered the brightness instead of the saturation because I liked the look better for an arc, and to be able to use a colored background. I also set the speed to alter the radius, making the wheel pop out more the faster the values are changing.</p> 
+    </div>
+    <div class="col-sm-6">
+       <pre style="width:100%; font-size: 1.3rem; margin-top: 50px"><code>            
+  function drawGradient(){
+      let color = 0.0;
+      let addVal = 1.1;
+
+      for(let i = 1.96; i <= angle; i += 0.02){
+
+          stroke(color % 360, 100,  Math.abs(currentVal - lastVal) + 10);
+          line(width/2, height/2, width/2 + radius*Math.cos(i), height/2 + radius*Math.sin(i));
+
+          color += addVal;
+      }
+  }
+    </code></pre>
+    </div>
+  </div>
+
+
+  <div class = "row">
+
+
+    <div class="col-sm-6">
+
+      <h4 class = "subhead" style = "margin-bottom: 25px;"> Arduino Code</h4>
+
+      <p class = "desc"> The Arduino code is almost identical to the code given out in class, just with a bit of averaging to smooth out the values. I'm most;y drawing attention to this because I was getting some very strange behavior with the averaging function returning very large negative values whenever averaging more than 2 readings. I tried adding all types of delay to combat this, but the only thing that worked was adding a print statement after the loop summing the values. I have no idea why, but I thought it was interesting to note.</p> 
+    </div>
+       <div class="col-sm-6">
+       <pre style="width:100%; font-size: 1.3rem; margin-top: 50px"><code>            
+  int avg() {
+    long total;
+
+    for (int i = 0; i < 100; i++) {
+      total += analogRead(A2);
+    }
+
+    Serial.println(total); //KEEP IN
+
+    total /= 100;
+    return total;
+  }
+      </code></pre>
+    </div>
+  </div>
+
+    <div class="flex-h" style="margin-top: 25px;">
+
+        <button class=button type="button"><a href="./webUSB.ino" download>Code</a></button>
+
+        <button class=button type="button"><a href="./webUSB/index.html">Website (Inspect for Code)</a></button>
+
+  </div>
+
+</div>
+
+</body>
+</html>
