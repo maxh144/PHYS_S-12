@@ -15,7 +15,7 @@
 
 <div class="flex-h">
 
-    <div class="flex-c data-out">
+    <div class="flex-c data-out" style="width: 420px">
 
 
         <h3 id="volt" class="data"> Voltage: NULL</h3>
@@ -28,7 +28,7 @@
 
     </div>
 
-    <div>
+    <div style="margin-top: 20px">
         <img src="http://192.168.4.1:81/stream" class="img-responsive margin center stream">
     </div>
 
@@ -46,7 +46,7 @@
 
 
             document.getElementById('volt').innerHTML = "Voltage: " + data['Voltage'] / 100.0 + "v";
-            document.getElementById('dist').innerHTML = "Distance: " + data['Distance'] / 100.0 + "cm";
+            document.getElementById('dist').innerHTML = "Distance: " + (data['Distance'] -2500) / 100.0 + "cm";
             document.getElementById('speed').innerHTML = "Speed: " + data['Speed'] + "kph";
             document.getElementById('depth').innerHTML = "Depth: " + data['Altitude'] + "m";
             document.getElementById('span').innerHTML = "Span: " + data['DTH'] + "m";

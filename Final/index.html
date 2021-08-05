@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>PHYS S-12: Intro to Digital Fabrication </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
+  <link href="../style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+  <nav class ="navbar container-fluid sticky-top">
+    <h2 class = "element"> <a href="../index.html" class="logo">Max H's Introduction to Digital Fabrication Documentation</a></h2> 
+    <div class="flex nav">
+      <h4 class = "element nav-element"> <a href="../about/index.html" class="logo">About Me</a> </h4>
+      <h4 class = "element nav-element"> Final Project</h4>
+    </div>
+  </nav>
+
+<div class="container-fluid">
+
+  <h3 class="header"> Final Project: RC Submarine</h3> <br>
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Final Result </h4>
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Idea </h4>
+
+  <div class = "row">      
+      <p class = "desc"> I live on the ocean, so I wanted a way to explore its depths with some sort of robotic device. To be able to really see what was going on, I knew I needed a live camera feed. Sensors like GPS also seemed like a natural way to me to gather more data. Partially for hydrodynamics and partially for looks, I also wanted to 3D print the body of the submarine to get a more curved and sub-like shape. This challenged me in ways I hadn't been before through the form factor and waterproofing</p>
+  </div>
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Research </h4>
+
+  <div class = "row">
+
+    <div class=col-sm-6>
+      <p class = "desc"></p>
+    </div>
+    <div class=col-sm-6 style="margin-top: 50px;">
+      <img src="./Pictures/slow.PNG" class="img-responsive margin center" style="width:80%; margin-top: 20px;" alt="Connector">
+      <img src="./Pictures/faster.PNG" class="img-responsive margin center" style="width:80%; margin-top: 20px;" alt="bracket">
+    </div>
+  </div>
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Sources, Models, and Code </h4>
+      <p class="desc"> To find a complete list of all the sources I used and downloads for all 3D models and code, navigate to the Github Repo for this project <a class="link"> here </a>.
+
+  <div class = "row">
+    <div class = "col-sm-6">
+
+      <h4 class = "subhead" style = "margin-bottom: 25px;"> Body Model </h4>
+
+      <p class = "desc"> The body of the submarine is modeled to be as simple as possible and require the least amount of reprints. With a total length of about 12 inches, I had to print the body in 2 parts. The only distinct features of the submarine's body are the mounting holes for the gearbox, input holes for control surfaces, and lips to connect the two halves and the front acrylic. The acrylic is sturdy enough to hold up to water pressure while still providing a clear surface for the camera to see through. </p>
+    </div>
+    <div class="col-sm-6">
+      <img src="./Pictures/model.jpg" class="img-responsive margin center" style="width:100%; margin-top: 75px;" alt="Body Model">
+      <img src="./Pictures/back.png" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="Back">
+    </div>
+  </div>
+
+
+  <div class = "row">
+
+    <div class="col-sm-6">
+
+      <h4 class = "subhead" style = "margin-bottom: 100px;"> Motor & Gearbox</h4>
+
+      <p class = "desc"> The motor and gearbox were very much limited by the restraints of consumer electronics. For the motor, the only type that actually used enough power to push the submarine and was readily available to me was a BLDC motor. But at a speed of about 15,000rpm (~1200Kv), the BLDC is far too fast and doesn't have enough torque to turn a propeller underwater. To combat this, the motor is run through a 5:1 NEMA gearbox designed for stepper motors. I also made an enclosure to convert the shape of the BLDC to a stepper motor, so that the motor can be held to the gearbox. To keep both the motor and gearbox in place, the motor, motor plate, motor enclosure, gearbox, and posts of the body are all sandwiched together. Inserts are added to the posts to make screwing in more durable. </p> 
+    </div>
+    <div class="col-sm-6">
+        <img src="./Pictures/motor.jpg" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="motor">
+        <img src="./Pictures/gearbox.jpg" class="img-responsive margin center" style="width:100%; margin-top: 5px;" alt="gearbox">
+    </div>
+  </div>
+
+  <div class = "row">
+
+    <div class="col-sm-6">
+       <img src="./Pictures/gbIns.jpg" class="img-responsive margin center" style="width:100%; margin-top: 110px;" alt="Gearbox Ins">
+        <p class="caption"> The gearbox slots inside the pillars to screw it in </p>    
+    </div>
+    <div class="col-sm-6">
+        <video  class="img-responsive margin center" style="margin-top: -95px; width:100%;" controls muted autoplay>
+          <source src="./Pictures/mTest.mp4" type="video/mp4">
+        </video>
+        <p class="caption"> Motor Test </p>    
+    </div>
+
+  </div>
+
+  <div class = "row">
+
+    <div class="col-sm-6">
+
+      <h4 class = "subhead" style = "margin-bottom: 25px;"> Propeller</h4>
+
+      <p class = "desc"> Because of limitatios on gearboxes, I had to tune the propeller to torque and speed of the BLDC and gearbox. This meant maximizing the thrust from the propeller. I settled on a 5 blade, high pitch, large diameter propeller. The propeller and the propeller shaft are 2 seperate parts to make the waterproofing easier, and attach with a m3 screw. The propeller shaft matches the D-shape of the gearbox with a set screw to keep it in place. To avoid having to worry about optimal propeller shape, I used <a class="link" href="https://www.thingiverse.com/thing:3039948">this</a> parametric model. </p> 
+    </div>
+    <div class="col-sm-6">
+      <img src="./Pictures/prop.jpg" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="Design">
+      <img src="./Pictures/shaft.PNG" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="Shaft">
+    </div>
+  </div>
+
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Control Surfcaes </h4>
+
+  <div class = "row">
+
+    <div class="col-sm-6">
+      <p class = "desc"> The control surfaces are the fins that stick out of the submarine to make it move. These are controlled through servos and simple wire assemblies. This is done rather than mounting the surfaces directly on servos due to space constraints in the back of the submarine with the motor and the top with the wires from the tether. For the diving planes, I mimicked the design of an aircraft wing. The rudder is cut to that it matches the contours of the submarine body. The planes are attached to small 3D printed posts with glue and epoxy. </p> 
+    </div>
+    <div class="col-sm-6">
+      <img src="./Pictures/servo.jpg" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="Servo">
+      <p class = "caption"> Prototype </p>
+      <img src="./Pictures/plane.PNG" class="img-responsive margin center" style="width:100%; margin-top: 35px;" alt="Dive Plane">
+    </div>
+
+  </div>
+
+    <div class = "row">
+
+    <div class="col-sm-6">
+       <img src="./Pictures/servoIns.jpg" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="Servo">
+       <p class = "caption"> Servos Installed </p>
+    </div>
+    <div class="col-sm-6">
+       <img src="./Pictures/wire.jpg" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="Wires">
+       <p class = "caption"> Metal Wires </p>    
+    </div>
+
+  </div>
+
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Printing </h4>
+
+  <div class = "row">
+
+    <div class="col-sm-6">
+      <p class = "desc"> For both printing and waterproofing, I followed <a class="link" href="https://all3dp.com/2/waterproof-3d-print-pla/ "> this guide </a>. One of the benefits of this in terms of slicer settings was in printing with larger layer heights, making less gaps for water to seep in and reducing print times. The parts took about 1 day to print in total. I printed the body halfs vertically to make the submarine more resistant to breaking by pushing down on the ends, which would be a weak point due to how the halves were assembled. </p> 
+    </div>
+    <div class="col-sm-6">
+      <img src="./Pictures/print.jpg" class="img-responsive margin center" style="width:100%; margin-top: 75px;" alt="Print">    
+    </div>
+
+  </div>
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Waterproofing the Body</h4>
+
+  <div class = "row">
+
+    <div class="col-sm-6">
+      <p class = "desc"> All of the printed parts that would be some point of contact between the inside and outside of the submarine were coated with 2 part resin using a paintbrush. Coating prints in resin is used as a way for prop makers to remove layer lines, but also worked quite well in sealing the gaps and affectively making a continuous plastic skin that was watertight. Each part recieved 2 coats of resin so any bubbles didn't create holes. I also used a vacuum chamber to remover bubbles, but this probably isn't neccecary. The coated parts included the 2 hull halves seperately, the pins for the control surfaces, and the motor shaft. I coated the pins because if water was able to get inside one, it could go out through the other side and enter the hull. The 2 halves of the hull and the acrylic sheet were also assembled with resin towards the end of the build process. </p> 
+    </div>
+    <div class="col-sm-6">
+      <img src="./Pictures/resin.jpg" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="Resin"> 
+      <img src="./Pictures/top.jpg" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="Top">      
+    </div>
+
+  </div>
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Waterproofing the Seals</h4>
+
+  <div class = "row">
+
+    <div class="col-sm-6">
+      <p class = "desc"> The seal for the motor shaft is a cup seal. This type of seal functions similar to an O ring, but with an extra lip so that when water pressure increases, the seal improves. I also put 2 extra O rings on top of the cup seal to improve wateresistance. The seals for the control surfaces are waterproofed with regular O rings. The cup seal and O rings were glued to the body with resin, so water couldnn't get in from between the body and seal. All seals are surrounded by a large amount of water repellent grease to keep water out of the craft. Adding grease to the seam between the body and hatch also helped waterproofing. </p> 
+    </div>
+    <div class="col-sm-6">
+      <img src="./Pictures/gbWater.jpg" class="img-responsive margin center" style="width:100%; margin-top: 50px;" alt="Gearbox Inner Seal">
+    </div>
+
+  </div>
+
+  <div class = "row">
+
+    <div class="col-sm-6">
+      <img src="./Pictures/mSeal.jpg" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="Outer Seal">  
+    </div>
+    <div class="col-sm-6">
+      <img src="./Pictures/rudSeal.jpg" class="img-responsive margin center" style="width:100%; margin-top: 25px;" alt="Rudder Seal"> 
+    </div>
+
+  </div>
+
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Sensors </h4>
+
+  <div class = "row">
+
+    <div class="col-sm-6">
+      <p class = "desc"> The craft has 3 sensors: 2 voltage divider based ones, a voltage monitor and IR distance sensor, and a GPS module. The voltage monitor is made of 2 identical resistors (10k) with the battery voltage as an input, dividing the voltage by 2 and making it possible to read. The IR sensor is identical to mine from <a class="link" href="../07_Input/index.html">Week 7</a>. The GPS is coded using NeoGPS, which was much more reliable and accurate the Adafruit GPS in my testing. The GPS communicates to the ESP-32 CAM using its serial ports. </p> 
+    </div>
+    <div class="col-sm-6">
+
+       <img src="./Pictures/IR.jpg" class="img-responsive margin center" style="width:100%; margin-top: 50px;" alt="IR Sensor">
+
+    </div>
+
+  </div>
+
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Code: Camera Feed & Sensor Relay </h4>
+
+  <div class = "row">
+
+    <div class="col-sm-6">
+      <p class = "desc"> This code is very similar to my work for <a class="link" href="../09_net/index.html">Week 9</a>, so check there for a more in-depth look. The ESP-32 CAM communicates with a laptop through a wireless access point it hosts to relay data. This means that the devices connect with wifi, but don't need a wifi network already present to communicate. I extracted the camera feed from the CameraWebServer (the camera feed can be found on its own through a different port & link) and added it to my own website to be able to resize it and show it alongside sensor data. I transmitted sensor data by mimicing one of the handlers from the exmaple that output JSON. My website fetches the JSON from that link so that it can update sensor data using <code>setInterval()</code>. The range for this type of communciation is ~300m, which was good enough for my use. Two of the sensors I used, IR and battery voltage, required analog inputs. While using wifi on the ESP-32 CAM, only pin 33, wired to a LED, can do analog input. This meant that I did the analog sensor readings on a Adafruit Metro M0, and transmitted the readings to the ESP-32 CAM using I2C. To be able to transmit a full unsigned integer, I sent both the high byte and low byte seperately, since I2C works in one byte messages. I had a lot of problems with wire working incorrectly, which were fixed by waiting somehow.</p> 
+    </div>
+    <div class="col-sm-6">
+
+      <pre style="width:100%; font-size: 1.3rem;"><code>            
+        void requestEvent() { //Wire
+
+          Wire.write(highByte(volt)); // VM
+          Wire.write(lowByte(volt));
+
+          Wire.write(highByte(dist)); // IR
+          Wire.write(lowByte(dist));
+
+        }
+      </code></pre>
+
+      <pre style="width:100%; font-size: 1.3rem;"><code>            
+        double getDist() { //GPS
+
+          double longi;
+          double lati;
+
+          longi = (fix.longitude() - baseLong) * 111139;
+          lati = (fix.latitude() - baseLat) * 111139 ;
+
+          return (sqrt(longi * longi + lati * lati));
+
+
+        }
+      </code></pre>
+
+    </div>
+
+  </div>
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Movement Programming Through Taranis </h4>
+
+      <p class = "desc"> Instead of directly programming the movement of the BLDC and servos with the ESP32, I connected them all directly to the RC reciever and configured all of the ranges and center points using the RC reciever. This provided more reliable movement and saved time, although it meant I couldn't control movement through sensors on the microcontroller. This movement can be seen in the demo video, working without a microcontroller. </p> 
+
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Tether </h4>
+
+  <div class = "row">
+
+    <div class="col-sm-6">
+      <p class = "desc"> The tether is made of plastic tubing, packing material, and tape. The tube is held in place on both ends using a multitude of different glues and tapes. The outisde of the tether is covered in plastic sheeting and the inside in tape to prevent water seeping through. The GPS and 3 antennas (1 for CAM, 2 for RC reciever) are all in the tether. This meant that 10 wires had to be run through the tube (2 per antenna, 4 for the GPS). I ran the wires by tying them into a bundle and a string, then pulling the string through. I had to bend the tether wires to fit around the curve of the top of submarine so the diving planes had enough room to manuever. </p> 
+    </div>
+    <div class="col-sm-6">
+       <img src="./Pictures/tether.jpg" class="img-responsive margin center" style="width:100%; margin-top: 50px;" alt="Tether">
+    </div>
+
+  </div>
+
+  <div class = "row">
+
+    <div class="col-sm-6">
+
+      <h4 class = "subhead" style = "margin-bottom: 25px;"> Bouyancy & Center of Mass </h4>
+
+      <p class = "desc"> Due to the lack of a ballast tank, the submarine needs to have slightly negative bouyancy. I tested this by contunually adding metal until the craft started sinking. I put most of the weight towards the front because of the motor assembly in the back.  </p> 
+    </div>
+    <div class="col-sm-6">
+       <img src="./Pictures/weight.jpg" class="img-responsive margin center" style="width:100%; margin-top: 50px;" alt="Weights">
+    </div>
+
+  </div>
+
+  <h4 class = "subhead" style = "margin-bottom: 25px;"> Wiring & Assembly </h4>
+
+  <div class = "row">
+
+    <div class="col-sm-6">
+      <p class = "desc"> The submarine is powered through a 4S Lipo (~15v at full charge), too high of a voltage for the Metro Vin. Although I could have technically used the voltage regulator on the ESP-32 CAM, this would have generated a lot of heat, adding to the alredy high heat generated from the wifi. Instead, I decided to power the boards off of the 1st 2 cells of the lipo using the balance port (probably not reccomened). I used the 1st cell of the lipo as the reading for the input of the volatge monitor. 2 voltage dividers are wired up for the IR sensor and the voltage monitor. The GPS is connected to the UOT/UOR on the CAM. The two boards are connected with 5v, ground, and SDA/SCL. The 3 pin ports for the servos and BLDC are all wired directly to the RC reciever, which gets its power from the 5v on the Metro. Once everything is plugged in, the hatch can be put on using tape, grease, and plastic sheeting to make a seal. The hole for the hatch is also lined with tape, creating a tighter seal than plastic on plastic would. </p> 
+    </div>
+    <div class="col-sm-6">
+       <img src="./Pictures/wiring.jpg" class="img-responsive margin center" style="width:100%; margin-top: 100px;" alt="Wiring">
+       <p class="caption"> ADC Wiring </p>
+    </div>
+
+  </div>
+
+
+   <h4 class = "subhead" style = "margin-bottom: 25px;"> Final Thoughts </h4>
+
+      <p class = "desc"> I was overall happy with how the project turned out. Most of my constraints were time-based, like having less time to prototype aspects like bouyancy and center of mass. I think designing the front half, particularly the wiring, before I started building in CAD would have helped everything come together better in the end and leave more room for weights to adjust bouyancy (could also be adjust through infill when printing). Having the center of mass lower in the submarine, possibly using sand, would have also helped to keep it more stable. Given the abundance of thrust the motor had, it might have also helped to make the design bigger to have more space to work in. Having larger control surfaces would have also helped to make the submarine move more. Waterproofing overall worked quite well, but could be imporved further by using higher quality products like metal shafts and bushings, and more O-rings. Finding a board with camera, wifi, and ADC abilites would also help to streamline the project. In terms of power delivery, adding a BEC to power the camera would have also been a nice touch. </p> 
+
+</div>
+
+</body>
+</html>
